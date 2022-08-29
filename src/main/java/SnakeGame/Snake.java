@@ -24,22 +24,22 @@ public class Snake extends JFrame {
 
     public Snake() {
 
-        setTitle("Snake"); // PONEMOS TITULO, TAMAÑO Y VISIBILIDAD
+        setTitle("Snake"); // PONGO TITULO, TAMAÑO Y VISIBILIDAD
         setSize(widht, height);
 
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize(); // CREAMOS UN DIMENSION PARA UBICAR LA PANTALLA EN EL CENTRO DE NUESTRA PANTALLA
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize(); // CREO UN DIMENSION PARA UBICAR LA PANTALLA EN EL CENTRO DE NUESTRA PANTALLA
         this.setLocation(dim.width / 2 - widht / 2, dim.height / 2 - height / 2);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // ESCAPE PARA CERRAR LA APP
 
-        this.addKeyListener(new Teclas()); //INSTANCIAMOS CLASE TECLAS PARA RECONOCER QUE TECLAS SE PRESIONAN
+        this.addKeyListener(new Teclas()); //INSTANCIO CLASE TECLAS PARA RECONOCER QUE TECLAS SE PRESIONAN
 
-        snake = new Point(widht / 2, height / 2); // CREAMOS EL PUNTO DE SNAKE EN EL CENTRO DE NUESTRA PANTALLA
+        snake = new Point(widht / 2, height / 2); // CREO EL PUNTO DE SNAKE EN EL CENTRO DE NUESTRA PANTALLA
         comida = new Point(widht / 2, 200);
         
 
-        imagensnake = new ImagenSnake(); // INSTANCIAMOS LA IMAGEN DE LA SNAKE
-        this.getContentPane().add(imagensnake); // AGREGAMOS LA IMAGEN DE NUESTRA SNAKE AL PANEL.
+        imagensnake = new ImagenSnake(); // INSTANCIO LA IMAGEN DE LA SNAKE
+        this.getContentPane().add(imagensnake); // AGREGO LA IMAGEN DE NUESTRA SNAKE AL PANEL.
 
         setVisible(true);
 
