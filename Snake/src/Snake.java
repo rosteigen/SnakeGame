@@ -17,7 +17,7 @@ public class Snake extends JFrame {
     int heightPoint = 10;
     ImagenSnake imagenSnake;
     int direccion;
-    long frecuencia = 30;
+    long frecuencia = 40;
 
     public Snake() {
         setTitle("Snake");
