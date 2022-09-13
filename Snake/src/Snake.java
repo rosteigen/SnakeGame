@@ -3,12 +3,11 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.Point;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Color;
-
 
 public class Snake extends JFrame {
 
@@ -25,6 +24,7 @@ public class Snake extends JFrame {
     boolean gameOver = false;
 
     public Snake() {
+
         setTitle("Snake");
         setSize(width, height);
         Dimension ventana = Toolkit.getDefaultToolkit().getScreenSize();
@@ -42,12 +42,16 @@ public class Snake extends JFrame {
         Thread comienzo = new Thread(momento);
         comienzo.start();
         setVisible(true);
+
     }
 
     public static void main(String[] args) throws Exception {
         Snake s = new Snake();
     }
 
+    /////////////////////
+
+    /////////////////////////////
     public void startGame() {
         comida = new Point(200, 100);
         snake = new Point(320, 240);
@@ -58,19 +62,15 @@ public class Snake extends JFrame {
 
     public void crearComida() {
         Random random = new Random();
-        
-        
-        comida.x = random.nextInt(630);
 
-        
+        comida.x = random.nextInt(630);
 
         comida.y = random.nextInt(470);
 
-        
     }
 
     public void actualizar() {
-        
+
         lista.add(0, new Point(snake.x, snake.y));
         lista.remove(lista.size() - 1);
 
@@ -92,21 +92,20 @@ public class Snake extends JFrame {
 
     public class ImagenSnake extends JPanel {
 
-        
         public void paintComponent(Graphics g) {
 
             super.paintComponent(g);
-            
-            if(gameOver){
-                g.setColor(new Color(0,0,0));
+
+            if (gameOver) {
+                g.setColor(new Color(105,105,105));
             } else {
-                g.setColor(new Color(255,255,255));
+                g.setColor(new Color(128,128,128));
             }
 
             g.fillRect(0, 0, width, height);
-            g.setColor(new Color(0, 0, 255));
+            g.setColor(new Color(0, 255, 0));
 
-            if(lista.size() > 0){
+            if (lista.size() > 0) {
                 for (int i = 0; i < lista.size(); i++) {
                     Point p = (Point) lista.get(i);
                     g.fillRect(p.x, p.y, widthPoint, heightPoint);
@@ -116,7 +115,18 @@ public class Snake extends JFrame {
             g.setColor(new Color(255, 0, 0));
             g.fillRect(comida.x, comida.y, widthPoint, heightPoint);
 
+            if (gameOver) {
+                g.setColor(new Color(255, 255, 255));
+                g.setFont(new Font("TimesRoman", Font.PLAIN, 60));
+                g.drawString("GAME OVER", 140, 200);
+                g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+                g.drawString("SCORE " + (lista.size() - 1), 250, 240);
+                g.drawString("R to Start New Game", 200, 320);
+                g.drawString("ESC to Exit", 250, 360);
+            }
+
         }
+
     }
 
     public class Teclas extends KeyAdapter {
@@ -147,6 +157,15 @@ public class Snake extends JFrame {
                 if (direccion != KeyEvent.VK_LEFT) {
                     direccion = KeyEvent.VK_RIGHT;
                 }
+            }
+
+            else if (e.getKeyCode() == KeyEvent.VK_R) {
+                gameOver = false;
+                startGame();
+            }
+            else if (e.getKeyCode() == KeyEvent.VK_N) {
+                gameOver = true;
+                
             }
         }
 
