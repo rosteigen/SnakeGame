@@ -93,9 +93,8 @@ public class Snake extends JFrame {
     public class ImagenSnake extends JPanel {
 
         
-
-        
         public void paintComponent(Graphics g) {
+
             super.paintComponent(g);
             
             if(gameOver){
